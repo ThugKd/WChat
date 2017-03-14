@@ -2,9 +2,9 @@ package com.thugkd.wchat;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.WindowManager;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -26,12 +26,12 @@ public class WelcomeActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
-        new Handler().postDelayed(new Runnable() {
+        new View(WelcomeActivity.this).postDelayed(new Runnable() {
             @Override
             public void run() {
 
-                Intent mainIntent = new Intent(WelcomeActivity.this, LoginActivity.class);
-                startActivity(mainIntent);
+                Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+                startActivity(intent);
                 finish();
             }
         }, SPLASH_TIME);
