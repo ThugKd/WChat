@@ -9,15 +9,24 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText phoneEdit;
-    private EditText passwordEdit;
-    private TextView forgetPass;
-    private Button loginBtn;
-    private Button registerBtn;
-
+    private EditText etPhone;
+    private EditText etPassword;
+    private TextView tvForgetPass;
+    private Button btnLogin;
+    private Button btnRegister;
 
 
     @Override
@@ -41,28 +50,66 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void findView() {
-        phoneEdit = (EditText) findViewById(R.id.account);
-        passwordEdit = (EditText) findViewById(R.id.password);
-        forgetPass = (TextView) findViewById(R.id.tv_forget_password);
-        loginBtn = (Button) findViewById(R.id.login);
-        registerBtn = (Button) findViewById(R.id.register);
+        etPhone = (EditText) findViewById(R.id.account);
+        etPassword = (EditText) findViewById(R.id.password);
+        tvForgetPass = (TextView) findViewById(R.id.tv_forget_password);
+        btnLogin = (Button) findViewById(R.id.login);
+        btnRegister = (Button) findViewById(R.id.register);
     }
 
     private void login() {
-        loginBtn.setOnClickListener(new View.OnClickListener(){
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                String phone = etPhone.getText().toString();
+                String password = etPassword.getText().toString();
+
+                if (phone.length() == 0) {
+                    Toast.makeText(LoginActivity.this, "手机号不能为空！", Toast.LENGTH_SHORT).show();
+                } else if (password.length() == 0) {
+                    Toast.makeText(LoginActivity.this, "密码不能为空！", Toast.LENGTH_SHORT).show();
+                } else if (phone.matches("^1[0-9]{10}$")) {
+                    Toast.makeText(LoginActivity.this, "手机号格式不对！", Toast.LENGTH_SHORT).show();
+                } else {
+                    String url = "http://10.177.167.64:8080/wchat/login";
+                    JSONObject jsonObject = new JSONObject();
+
+                    try {
+                        jsonObject.put("phone",phone);
+                        jsonObject.put("password",password);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(),
+                            new Response.Listener<JSONObject>() {
+
+                                @Override
+                                public void onResponse(JSONObject jsonObject) {
+
+                                }
+                            },
+                            new Response.ErrorListener() {
+
+                                @Override
+                                public void onErrorResponse(VolleyError volleyError) {
+
+                                }
+                            });
+                }
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
     }
 
     private void register() {
-        registerBtn.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -70,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void retrievePassword() {
-        forgetPass.setOnClickListener(new View.OnClickListener() {
+        tvForgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RetrievePasswordActivity.class);

@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">WChat</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home">会话</string>
+    <string name="title_dashboard">好友</string>
+    <string name="title_notifications">我的</string>
     <string name="et_account_hint">手机</string>
     <string name="et_password_hint">密码</string>
     <string name="login">登录</string>
