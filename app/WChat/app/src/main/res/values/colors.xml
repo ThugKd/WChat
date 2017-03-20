@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#00796B</color>
     <color name="colorAccent">#FF4081</color>
     <color name="devide_line">#CBCED2</color>
     <color name="blue">#499BF7</color>
@@ -31,4 +31,9 @@
     <color name="naming">#ABABAB</color>
     <color name="background">#272727</color>
     <color name="orange_yellow">#9b9ba0</color>
+
+    <color name="tab_checked">@color/colorPrimaryDark</color>
+    <color name="tab_unchecked">#757575</color>
+    <color name="green">#009688</color>
+    <color name="darkGreen">#00796B</color>
 </resources>

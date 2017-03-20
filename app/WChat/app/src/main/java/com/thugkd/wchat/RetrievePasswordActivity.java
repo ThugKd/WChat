@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class RetrievePasswordActivity extends AppCompatActivity {
 
@@ -15,6 +16,7 @@ public class RetrievePasswordActivity extends AppCompatActivity {
     private Button btnGetVerifyCode;
     private EditText etPassword;
     private EditText etConfirmPassword;
+    private TextView tvTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,7 @@ public class RetrievePasswordActivity extends AppCompatActivity {
     }
 
     private void initToolBar() {
-        toolbar.setTitle("找回密码");
+        tvTitle.setText(R.string.retrieve_pass);
         toolbar.setTitleTextAppearance(RetrievePasswordActivity.this, R.style.toolbar_title);
     }
 
@@ -42,5 +44,6 @@ public class RetrievePasswordActivity extends AppCompatActivity {
         btnGetVerifyCode = (Button) findViewById(R.id.btn_get_verify_code);
         etPassword = (EditText) findViewById(R.id.et_password);
         etConfirmPassword = (EditText) findViewById(R.id.et_password2);
+        tvTitle = (TextView) findViewById(R.id.titlebar_title);
     }
 }

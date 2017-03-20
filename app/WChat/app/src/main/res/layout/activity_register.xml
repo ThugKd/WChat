@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/layout_toolbar" />
+
     <LinearLayout
         android:id="@+id/ll_phone"
         android:layout_width="match_parent"
@@ -53,8 +55,9 @@
                 android:gravity="center"
                 android:id="@+id/btn_get_verify_code"
                 android:layout_marginLeft="5dp"
-                android:background="@color/blue"
+                android:background="@color/green"
                 android:text="@string/get_verify_code"
+                android:textColor="@color/whites"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -92,12 +95,13 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_next"
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="20dp"
         android:background="@drawable/login_btn"
         android:text="@string/register"
+        android:textColor="@color/whites"
         android:textSize="18sp" />
 
 

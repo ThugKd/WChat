@@ -1,60 +1,100 @@
 package com.thugkd.wchat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import com.thugkd.fragment.ChatFragment;
+import com.thugkd.fragment.FriendFragment;
+import com.thugkd.fragment.MineFragment;
 
-    private TextView mTextMessage;
+public class MainActivity extends FragmentActivity {
+
+    protected static final String TAG = "MainActivity";
     private Toolbar toolbar;
+    private TextView tvTitle;
+    private Fragment fragment;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null){
-            actionBar.hide();
-        }
-
         findView();
+        init();
+    }
+
+    public void init(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, new ChatFragment()).commit();
+        tvTitle.setText("会话");
+    }
+    //按下返回键  直接返回桌面
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private void findView() {
-        mTextMessage = (TextView) findViewById(R.id.message);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tvTitle  = (TextView) findViewById(R.id.titlebar_title);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
     }
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
+                    fragment = new ChatFragment();
+                    tvTitle.setText("会话");
+                    break;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
+                    fragment = new FriendFragment();
+                    tvTitle.setText("好友");
+                    break;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
+                    fragment = new MineFragment();
+                    tvTitle.setText("我的");
+                    break;
+                default:
+                    break;
             }
-            return false;
-        }
 
+            if(fragment != null){
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content,fragment);
+                fragmentTransaction.commit();
+            }
+
+            return true;
+        }
     };
 
-
 }
+
+
+

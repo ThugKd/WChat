@@ -40,6 +40,7 @@ public class SystemMethod {
      * @param pixels
      * @return
      */
+
     public static Bitmap toRoundCorner(Bitmap bitmap, int pixels) {
 
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
