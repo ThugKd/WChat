@@ -62,5 +62,7 @@ public class LoginServlet extends HttpServlet {
             //phone error
             jsonObject.addProperty("status", 2);
         }
+
+        JSONUtil.returnJSON(resp,jsonObject.toString());
     }
 }
