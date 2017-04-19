@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.thugkd.wchat.AddFriend">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/ll_user_info"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:layout_marginRight="20dp"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:background="@drawable/acm_inputbox"-->
+        <!--android:orientation="vertical">-->
+        <!---->
+    <!--</LinearLayout>-->
+    <EditText
+        android:background="@drawable/acm_inputbox"
+        android:layout_width="match_parent"
+        android:id="@+id/account"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:inputType="number"
+        android:hint="@string/add_friend_hint"/>
+
+    <Button
+        android:id="@+id/add_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/login_btn"
+        android:text="添加"
+        android:textSize="20sp"
+        android:textColor="@color/whites"/>
+
+</LinearLayout>

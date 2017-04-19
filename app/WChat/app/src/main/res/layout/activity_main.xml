@@ -8,8 +8,6 @@
     android:orientation="vertical"
     tools:context="com.thugkd.wchat.MainActivity">
 
-    <include layout="@layout/layout_toolbar"/>
-
     <FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/layout_toolbar" />
 
     <RelativeLayout
         android:id="@+id/my_avator_relative"
@@ -34,30 +36,36 @@
             android:text="@string/app_name" />
 
         <ImageView
-            android:id="@+id/mine_vip"
-            android:layout_width="40dp"
-            android:layout_height="27dp"
-            android:layout_alignTop="@+id/mine_nick"
-            android:layout_marginLeft="7dp"
-            android:layout_toRightOf="@+id/mine_nick"
-            android:src="@drawable/vip" />
-
-        <ImageView
             android:id="@+id/star_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/mine_nick"
             android:layout_below="@+id/mine_nick"
             android:layout_marginTop="7dp"
-            android:src="@drawable/star" />
+            android:src="@drawable/star"
+            tools:ignore="RtlHardcoded" />
 
         <ImageView
 
-            android:id="@+id/start_2"
+            android:id="@+id/star_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/star_1"
             android:layout_toRightOf="@+id/star_1"
+            android:src="@drawable/star" /><ImageView
+
+            android:id="@+id/star_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/star_1"
+            android:layout_toRightOf="@+id/star_2"
+            android:src="@drawable/star" /><ImageView
+
+            android:id="@+id/star_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/star_1"
+            android:layout_toRightOf="@+id/star_3"
             android:src="@drawable/star" />
 
     </RelativeLayout>

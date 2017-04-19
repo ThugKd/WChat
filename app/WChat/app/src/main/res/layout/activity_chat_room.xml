@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.thugkd.wchat.ChatRoomActivity">
+    android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/layout_toolbar"
+        android:id="@+id/toolbarLinear"/>
+
+
+    <LinearLayout
+        android:id="@+id/chat_bottom_linear"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/whites"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/chat_bottom_edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/acm_inputbox">
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/chat_bottom_send"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/chat_bottom_send"
+            android:text="@string/send"
+            android:textColor="@color/whites"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/chat_bottom_linear"
+        android:background="@color/devide_line" />
+
+    <ListView
+        android:id="@+id/chat_content_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:layout_above="@id/chat_bottom_linear"
+        android:layout_below="@id/toolbarLinear"/>
+
+</RelativeLayout>

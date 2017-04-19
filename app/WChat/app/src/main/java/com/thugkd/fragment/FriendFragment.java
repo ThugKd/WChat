@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
@@ -15,69 +18,144 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.thugkd.entity.User;
-import com.thugkd.wchat.ChatActivity;
+import com.thugkd.wchat.AddFriend;
+import com.thugkd.wchat.ChatRoomActivity;
 import com.thugkd.wchat.R;
+import com.thugkd.wchat.ScanActivity;
 
 public class FriendFragment extends Fragment {
 
+    public static String buddyStr = "";
+    public static String groupStr = "";
+
     private Context mContext;
-    private View mBaseView;
+    private View friendView;
+    private Toolbar toolbar;
+    private TextView tvTitle;
+
     private RelativeLayout groupRelative;
     private int REQUEST_CHAT = 0;
+
+    private MyAdapter adapter;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mContext = getActivity();
-        mBaseView = inflater.inflate(R.layout.fragment_friend, null);
+        friendView = inflater.inflate(R.layout.fragment_friend, null);
 
-        return mBaseView;
+        findView();
+        initView();
+        return friendView;
+    }
+
+
+    private void initView() {
+        toolbar.inflateMenu(R.menu.toolbar_navigation);
+        toolbar.setOnMenuItemClickListener(onMenuItemClick);
+        tvTitle.setText("好友");
+    }
+
+    private void findView() {
+        toolbar = (Toolbar) friendView.findViewById(R.id.toolbar);
+        tvTitle = (TextView) friendView.findViewById(R.id.titlebar_title);
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onActivityCreated(savedInstanceState);
-        ExpandableListAdapter adapter = new MyAdapter();
+        adapter = new MyAdapter();
         ExpandableListView ev = (ExpandableListView) getActivity().findViewById(R.id.expandlist);
         ev.setGroupIndicator(null);
         ev.setAdapter(adapter);
         ev.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
                                        public boolean onChildClick(ExpandableListView parent, View v,
                                                                    int groupPosition, int childPosition, long id) {
-                                           // TODO Auto-generated method stub
-                                           TextView nameView = (TextView) v.findViewById(R.id.contact_list_item_name);
-                                           String friend_name = nameView.getText().toString();
-                                           Intent intent = new Intent(getActivity(), ChatActivity.class);
+
+                                           String friend_name = (String) adapter.getChild(groupPosition, childPosition);
+                                           Intent intent = new Intent(getActivity(), ChatRoomActivity.class);
                                            Bundle bundle = new Bundle();
                                            User user = new User();
-                                           user.setId(10 * groupPosition + childPosition);
-                                           user.setName(friend_name);
-                                           intent.putExtra("user", user);
-                                           startActivityForResult(intent, REQUEST_CHAT);
+
+                                           user.setPhone((String) adapter.getAccount(groupPosition, childPosition));
+                                           user.setNick(friend_name);
+                                           bundle.putSerializable("user", user);
+                                           intent.putExtras(bundle);
+                                           startActivity(intent);
                                            return true;
                                        }
                                    }
         );
     }
 
+    //toolbar 导航
+    private Toolbar.OnMenuItemClickListener onMenuItemClick = new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.add_friend:
+                    startActivity(new Intent(getContext(), AddFriend.class));
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode,
-//                                 Intent data) {
-//        // TODO Auto-generated method stub
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == 0 && resultCode == 1) {
-//            ImageButton mXiaoxi = (ImageButton) getActivity().findViewById(R.id.buttom_xiaoxi);
-//            mXiaoxi.performClick();
-//        }
-//    }
+                    break;
+                case R.id.add_group:
+                    startActivity(new Intent(getContext(), AddFriend.class));
+
+                    break;
+                case R.id.scan:
+                    startActivity(new Intent(getContext(), ScanActivity.class));
+                    break;
+            }
+            return true;
+        }
+    };
 
 
     /*将适配器定义为内部类*/
     class MyAdapter implements ExpandableListAdapter {
 
         String[] group = new String[]{"群组", "好友"};
-        String[][] child = new String[][]{{"赵丽颖", "李彦宏"}, {"王婷", "张雅", "马化腾", "李彦宏"}};
-        String[][] signString = new String[][]{{"我家颖宝最可爱！", "向偶像学习！"}, {"我曾经喜欢过你！", "", "羞涩的小马哥", "度厂第一美男子"}};
+
+        String[][] child = new String[2][];
+
+        String[][] signString = new String[2][];
+
+        String[][] account = new String[2][];
+
+        public MyAdapter() {
+            super();
+            initData();
+        }
+
+        public void initData() {
+            Log.e("Buddy", buddyStr);
+            Log.e("group", groupStr);
+            String[] buddyArr = FriendFragment.buddyStr.trim().split(" ");
+            String[] groupArr = FriendFragment.groupStr.trim().split(" ");
+
+            User[] users = jieXi(buddyArr);
+
+            User group = jieXiGroup(groupArr);
+
+            child[0] = new String[1];
+            signString[0] = new String[1];
+            account[0] = new String[1];
+            child[0][0] = group.getNick();
+            signString[0][0] = "我是" + group.getNick() + "群组";
+            account[0][0] = group.getPhone();
+
+            child[1] = new String[users.length];
+            signString[1] = new String[users.length];
+            account[1] = new String[users.length];
+            for (int i = 0; i < users.length; i++) {
+                child[1][i] = users[i].getNick();
+                signString[1][i] = "我是" + users[i].getNick();
+                account[1][i] = users[i].getPhone();
+            }
+        }
+
+
+        public Object getAccount(int groupPosition, int childPosition) {
+            return account[groupPosition][childPosition];
+        }
 
         public boolean areAllItemsEnabled() {
             // TODO Auto-generated method stub
@@ -214,6 +292,28 @@ public class FriendFragment extends Fragment {
         public void unregisterDataSetObserver(DataSetObserver observer) {
             // TODO Auto-generated method stub
 
+        }
+
+        private User[] jieXi(String[] str) {
+            User[] user = new User[str.length];
+            for (int i = 0; i < str.length; i++) {
+                String s[] = str[i].split("_");
+                user[i] = new User();
+                user[i].setPhone(s[0]);
+                user[i].setNick(s[1]);
+                user[i].setAvatar(s[2]);
+                user[i].setIsOnLine(Integer.parseInt(s[3]));
+            }
+
+            return user;
+        }
+
+        private User jieXiGroup(String[] str) {
+            User group = new User();
+            String[] groups = str[0].split("_");
+            group.setPhone(groups[0]);
+            group.setNick(groups[1]);
+            return group;
         }
     }
 

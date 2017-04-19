@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/layout_toolbar" />
+
     <LinearLayout
         android:id="@+id/serach"
         android:layout_width="match_parent"
@@ -15,7 +17,9 @@
         android:background="@drawable/acm_inputbox"
         android:gravity="center"
         android:orientation="horizontal"
-        tools:ignore="ObsoleteLayoutParam">
+        tools:ignore="ObsoleteLayoutParam"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -27,6 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="搜索"
+            android:maxLines="1"
             android:textColor="#818181"
             tools:ignore="HardcodedText" />
 
@@ -34,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
+
             />
     </LinearLayout>
 

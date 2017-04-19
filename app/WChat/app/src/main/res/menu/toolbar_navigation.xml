@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/add_friend"
+        android:icon="@drawable/add_friend"
+        android:orderInCategory="80"
+        android:title="@string/add_friend"
+        app:showAsAction="never|withText" />
+
+    <item
+        android:id="@+id/add_group"
+        android:icon="@drawable/add_group"
+        android:orderInCategory="90"
+        android:title="@string/add_group"
+        app:showAsAction="never|withText" />
+
+    <item
+        android:id="@+id/scan"
+        android:icon="@drawable/scan"
+        android:orderInCategory="100"
+        android:title="@string/scan"
+        app:showAsAction="never|withText" />
+</menu>

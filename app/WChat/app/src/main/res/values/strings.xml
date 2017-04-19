@@ -20,5 +20,13 @@
     <string name="confirm_password">请确认密码</string>
     <string name="confirm">确认</string>
     <string name="retrieve_pass">找回密码</string>
+    <string name="add_friend">添加好友</string>
+    <string name="add_group">添加群组</string>
+    <string name="scan">扫一扫</string>
+    <string name="add_friend_hint">请输入好友手机/群号</string>
+    <string name="send_msg">发消息</string>
+    <string name="delete_friend">删除好友</string>
+    <string name="friend_info">好友信息</string>
+    <string name="send">发送</string>
 
 </resources>

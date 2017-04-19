@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="6.0dip"
-    android:paddingTop="6.0dip"
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp"
     android:background="#fff">
 
     <ImageView
@@ -12,45 +12,36 @@
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10.0dip"
+        android:layout_marginLeft="10dp"
         android:scaleType="fitXY"/>
-
-    <ImageView
-        android:id="@+id/stateicon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/icon"
-        android:layout_alignRight="@id/icon"
-        android:src="@drawable/status_online"
-        />
 
     <TextView
         android:id="@+id/contact_list_item_name"
         android:layout_width="fill_parent"
-        android:layout_height="25.0dip"
-        android:layout_marginLeft="10.0dip"
-        android:layout_marginRight="18.0dip"
+        android:layout_height="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="18dp"
         android:layout_toRightOf="@id/icon"
         android:ellipsize="end"
         android:gravity="left|center"
         android:includeFontPadding="false"
-        android:padding="0.0dip"
-        android:textSize="16.0sp" />
+        android:padding="0dp"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/cpntact_list_item_state"
         android:layout_width="fill_parent"
-        android:layout_height="25.0dip"
+        android:layout_height="25dp"
         android:layout_alignParentRight="true"
         android:layout_below="@id/contact_list_item_name"
-        android:layout_marginLeft="10.0dip"
-        android:layout_marginRight="18.0dip"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="18dp"
         android:layout_toRightOf="@id/icon"
         android:ellipsize="end"
         android:gravity="left|center"
         android:includeFontPadding="false"
-        android:padding="0.0dip"
+        android:padding="0dp"
         android:textColor="@color/gray"
-        android:textSize="12.0sp" />
+        android:textSize="12sp" />
 
 </RelativeLayout>

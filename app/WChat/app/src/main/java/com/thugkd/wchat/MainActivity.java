@@ -18,6 +18,8 @@ import com.thugkd.fragment.FriendFragment;
 import com.thugkd.fragment.MineFragment;
 
 public class MainActivity extends FragmentActivity {
+    //用户信息
+    public static String myInfo = "";
 
     protected static final String TAG = "MainActivity";
     private Toolbar toolbar;
@@ -25,20 +27,19 @@ public class MainActivity extends FragmentActivity {
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-
+    ChatRoomActivity.MessageBroadcastReceiver broadcastReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         findView();
         init();
     }
 
-    public void init(){
+    public void init() {
         getSupportFragmentManager().beginTransaction().replace(R.id.content, new ChatFragment()).commit();
-        tvTitle.setText("会话");
     }
+
     //按下返回键  直接返回桌面
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -55,10 +56,11 @@ public class MainActivity extends FragmentActivity {
 
     private void findView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        tvTitle  = (TextView) findViewById(R.id.titlebar_title);
+        tvTitle = (TextView) findViewById(R.id.titlebar_title);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -69,27 +71,23 @@ public class MainActivity extends FragmentActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     fragment = new ChatFragment();
-                    tvTitle.setText("会话");
                     break;
                 case R.id.navigation_dashboard:
                     fragment = new FriendFragment();
-                    tvTitle.setText("好友");
                     break;
                 case R.id.navigation_notifications:
                     fragment = new MineFragment();
-                    tvTitle.setText("我的");
                     break;
                 default:
                     break;
             }
 
-            if(fragment != null){
+            if (fragment != null) {
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.content,fragment);
+                fragmentTransaction.replace(R.id.content, fragment);
                 fragmentTransaction.commit();
             }
-
             return true;
         }
     };

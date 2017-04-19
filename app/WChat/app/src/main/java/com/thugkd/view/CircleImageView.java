@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.util.AttributeSet;
 
 import com.thugkd.wchat.R;
+
 public class CircleImageView extends android.support.v7.widget.AppCompatImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
@@ -139,7 +140,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         return mBorderColor;
     }
 
-    public void setBorderColor( int borderColor) {
+    public void setBorderColor(int borderColor) {
         if (borderColor == mBorderColor) {
             return;
         }
@@ -149,7 +150,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         invalidate();
     }
 
-    public void setBorderColorResource( int borderColorRes) {
+    public void setBorderColorResource(int borderColorRes) {
         setBorderColor(getContext().getResources().getColor(borderColorRes));
     }
 
@@ -157,7 +158,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         return mFillColor;
     }
 
-    public void setFillColor( int fillColor) {
+    public void setFillColor(int fillColor) {
         if (fillColor == mFillColor) {
             return;
         }
@@ -167,7 +168,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         invalidate();
     }
 
-    public void setFillColorResource( int fillColorRes) {
+    public void setFillColorResource(int fillColorRes) {
         setFillColor(getContext().getResources().getColor(fillColorRes));
     }
 
@@ -212,7 +213,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
     }
 
     @Override
-    public void setImageResource( int resId) {
+    public void setImageResource(int resId) {
         super.setImageResource(resId);
         mBitmap = getBitmapFromDrawable(getDrawable());
         setup();

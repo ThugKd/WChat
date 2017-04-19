@@ -1,12 +1,9 @@
 package com.thugkd.wchat;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -33,18 +30,8 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                SharedPreferences sp = getSharedPreferences("loginState", Context.MODE_PRIVATE);
-                boolean isLogin = sp.getBoolean("isLogin",false);
-
-                Log.e("WelcomeActivity","" + isLogin);
                 Intent intent = null;
-
-                if(isLogin == true){
-                     intent = new Intent(WelcomeActivity.this, MainActivity.class);
-                }else {
-                     intent = new Intent(WelcomeActivity.this, LoginActivity.class);
-                }
-
+                intent = new Intent(WelcomeActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
 

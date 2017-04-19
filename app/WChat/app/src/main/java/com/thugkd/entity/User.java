@@ -1,69 +1,47 @@
 package com.thugkd.entity;
 
-/**
- * Created by thugkd on 19/03/2017.
- */
-
 import java.io.Serializable;
+import java.util.Date;
 
+/**
+ * Created with IntelliJ IDEA
+ *
+ * @Description:
+ * @author: thugkd
+ * @date: 24/03/2017 16:18
+ */
 public class User implements Serializable {
 
-    private int id;
-    private String name;
-    private String email;
+    private static final long serialVersionUID = 1L;
+
+    private String operation;
+    private String phone;
     private String password;
-    private int isOnline;
-    private int img;
-    private String ip;
-    private int port;
-    private int group;
+    private String nick;
+    private String avatar;
+    private int sex;
+    private int age;
+    private int isOnLine;
+    private Date addTime;
 
-    public int getId() {
-        return id;
+    public User(){
+
     }
 
-    public void setId(int id2) {
-        this.id = id2;
+    public String getOperation() {
+        return operation;
     }
 
-    public int getGroup() {
-        return group;
+    public void setOperation(String operation) {
+        this.operation = operation;
     }
 
-    public void setGroup(int group) {
-        this.group = group;
+    public String getPhone() {
+        return phone;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {
@@ -74,44 +52,56 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public int getIsOnline() {
-        return isOnline;
+    public String getNick() {
+        return nick;
     }
 
-    public void setIsOnline(int isOnline) {
-        this.isOnline = isOnline;
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 
-    public int getImg() {
-        return img;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setImg(int img) {
-        this.img = img;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o instanceof User) {//不是所有的对象都可以强制类型转换，当且仅当o类型本身是User类型
-            //只不过将其指向了Object的引用，即将子类对象赋给父类引用，所以在进行强制类型转换之前要进行类型
-            //判断，即通过instanceof运算符来判断，当且仅当o是User的类或子类时返回true
-            User user = (User) o;
-            if (user.getId() == id && user.getIp().equals(ip)
-                    && user.getPort() == port) {
-                return true;
-            }
-        }
+    public int getSex() {
+        return sex;
+    }
 
-        return false;
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Date getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
+    }
+
+    public int getIsOnLine() {
+        return isOnLine;
+    }
+
+    public void setIsOnLine(int isOnLine) {
+        this.isOnLine = isOnLine;
     }
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", email=" + email
-                + ", password=" + password + ", isOnline=" + isOnline
-                + ", img=" + img + ", ip=" + ip + ", port=" + port + ", group="
-                + group + "]";
+        return "super.toString();"+ " 6666666666";
     }
 }
-
-
