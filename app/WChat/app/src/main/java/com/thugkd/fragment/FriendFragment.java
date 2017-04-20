@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.thugkd.entity.User;
+import com.thugkd.view.CircleImageView;
 import com.thugkd.wchat.AddFriend;
 import com.thugkd.wchat.ChatRoomActivity;
 import com.thugkd.wchat.R;
@@ -185,7 +186,7 @@ public class FriendFragment extends Fragment {
                         .findViewById(R.id.contact_list_item_name);
                 holder.feelView = (TextView) convertView
                         .findViewById(R.id.cpntact_list_item_state);
-                holder.iconView = (ImageView) convertView.findViewById(R.id.icon);
+                holder.iconView = (CircleImageView) convertView.findViewById(R.id.icon);
                 convertView.setTag(holder);
             } else {
                 holder = (GroupHolder) convertView.getTag();
@@ -326,7 +327,7 @@ public class FriendFragment extends Fragment {
     class GroupHolder {
         TextView nameView;
         TextView feelView;
-        ImageView iconView;
+        CircleImageView iconView;
     }
 }
 
