@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tvForgetPass;
     private Button btnLogin;
     private Button btnRegister;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

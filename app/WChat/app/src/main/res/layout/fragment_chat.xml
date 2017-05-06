@@ -43,7 +43,7 @@
             />
     </LinearLayout>
 
-    <com.baoyz.swipemenulistview.SwipeMenuListView
+    <ListView
         android:id="@+id/chat_listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

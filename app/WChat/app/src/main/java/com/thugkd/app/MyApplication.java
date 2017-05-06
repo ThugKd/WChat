@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.Log;
 
 import com.thugkd.adapter.RecentChatAdapter;
 import com.thugkd.db.MessageDB;
@@ -96,7 +97,7 @@ public class MyApplication extends Application {
 
             RecentChatEntity entity1;
             if (mes.getGroupAccount() != null) {
-                entity1 = new RecentChatEntity(entity.getSender(),
+                entity1 = new RecentChatEntity(mes.getGroupAccount(),
                         null, 1, "wchatGroup", getDate(),
                         entity.getContent());
             } else {
@@ -117,6 +118,7 @@ public class MyApplication extends Application {
                 }
             }
 
+            Log.e("count",entity1.getCount()+ "");
             ChatFragment.RecentChatList.addFirst(entity1);
 
             adapter.notifyDataSetChanged();

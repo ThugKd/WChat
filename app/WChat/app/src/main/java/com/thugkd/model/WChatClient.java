@@ -17,7 +17,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 
 public class WChatClient {
-    public static final String IP = "169.254.30.43";
+    public static final String IP = "192.168.0.100";
     public static final int PORT = 10000;
 
     private Context context;

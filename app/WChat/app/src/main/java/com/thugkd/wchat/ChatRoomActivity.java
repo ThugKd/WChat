@@ -189,12 +189,6 @@ public class ChatRoomActivity extends AppCompatActivity {
             entity.setReceiver(mes.getReceiver());
             entity.setContent(mes.getContent());
             entity.setSendTime(mes.getSendTime());
-
-//            if (mes.getGroupAccount() != null) {
-//                messageDB.saveMsg(mes.getGroupAccount(), entity);
-//            } else {
-//                messageDB.saveMsg(mes.getSender(), entity);
-//            }
             mDataArrays.add(entity);
             mAdapter.notifyDataSetChanged();
             mListView.setSelection(mListView.getCount() - 1);

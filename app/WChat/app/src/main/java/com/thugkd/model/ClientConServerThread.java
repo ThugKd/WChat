@@ -45,8 +45,6 @@ public class ClientConServerThread extends Thread {
 
                 if (m.getType().equals(MessageType.COM_MES)
                         || m.getType().equals(MessageType.GROUP_MES)) {
-
-
                     Log.e("MES", m.getSender() + "---" + m.getReceiver() + "==" + m.getContent());
                     Intent intent = new Intent("com.thugkd.wchat.mes");
                     Bundle bundle = new Bundle();

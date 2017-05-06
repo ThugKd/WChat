@@ -1,7 +1,5 @@
 package com.thugkd.model;
 
-import android.util.Log;
-
 import java.util.HashMap;
 
 public class ManageClientConServer {
@@ -20,7 +18,6 @@ public class ManageClientConServer {
                 }
             }
         }
-        Log.e("Manager", "get====");
         return manager;
     }
 
@@ -28,11 +25,9 @@ public class ManageClientConServer {
 
     public void addClientConServerThread(String account, ClientConServerThread ccst) {
         hm.put(account, ccst);
-        Log.e("Manager", "add====");
     }
 
     public ClientConServerThread getClientConServerThread(String i) {
-        Log.e("Manager", "getCli====");
 
         return hm.get(i);
     }

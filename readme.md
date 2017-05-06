@@ -1,12 +1,31 @@
 # <center>WChat</center>
     Android chatting app
+    
+---
+### 一、开发环境：
 
-### 一、功能
+| 工具 | 版本 |
+| :-: | :-: |
+| Android Studio  | 2.3.1 |
+| IntelliJ IDEA | 2017.1 |
+| MySQL | 5.7.15 |
+
+---
+
+### 二、运行环境
+
+     Android 4.4级以上
+
+---
+
+### 三、功能
 
 功能模块图
 ![功能模块图](http://i4.buimg.com/567571/e80e967c1e6138bf.png)
 
-### 二、界面设计
+---
+
+### 四、界面设计
 欢迎界面
 ![](http://i4.buimg.com/567571/ca456414567e8501.png)
 

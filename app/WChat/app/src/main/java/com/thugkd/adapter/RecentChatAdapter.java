@@ -1,9 +1,7 @@
 package com.thugkd.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +11,6 @@ import android.widget.TextView;
 
 import com.thugkd.app.MyApplication;
 import com.thugkd.entity.RecentChatEntity;
-import com.thugkd.entity.User;
-import com.thugkd.wchat.ChatRoomActivity;
 import com.thugkd.wchat.R;
 
 import java.util.LinkedList;
@@ -23,16 +19,13 @@ import java.util.LinkedList;
  * Created by thugkd on 06/04/2017.
  */
 
-public class RecentChatAdapter extends BaseAdapter {
+public class RecentChatAdapter extends BaseAdapter{
 
     private Context context;
     private LinkedList<RecentChatEntity> list;
     private MyApplication application;
     private LayoutInflater inflater;
 
-    public RecentChatAdapter() {
-        // TODO Auto-generated constructor stub
-    }
 
     public RecentChatAdapter(Context context, LinkedList<RecentChatEntity> list) {
         // TODO Auto-generated constructor stub
@@ -91,33 +84,32 @@ public class RecentChatAdapter extends BaseAdapter {
             holder.count.setText(entity.getCount() + "");
             holder.count.setTextColor(Color.BLACK);
         } else {
-            Log.i("recentchatAdapter", "this is entity.getCount()" + String.valueOf(entity.getCount()));
             holder.count.setVisibility(View.INVISIBLE);// 如果没有消息，就隐藏此view
         }
-        // 点击事件
-        convertView.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                // 下面是切换到聊天界面处理
-                User user = new User();
-                user.setNick(entity.getName());
-                user.setPhone(entity.getId());
-                user.setAvatar(entity.getImg());
-                Intent intent = new Intent(context, ChatRoomActivity.class);
-                intent.putExtra("user", user);
-                //这一句一定不能去掉否则会报错，Calling startActivity() from outside of an Activity  context
-                //requires the FLAG_ACTIVITY_NEW_TASK flag. Is this really what you want?
-                //即当不是在一个activity中启动一个activity时必须加上上面那个语句
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                context.startActivity(intent);
-
-                entity.setCount(0);
-                notifyDataSetChanged();
-                application.setRecentNum(0);
-
-            }
-        });
+//        // 点击事件
+//        convertView.setOnClickListener(new View.OnClickListener() {
+//
+//            public void onClick(View v) {
+//                // 下面是切换到聊天界面处理
+//                User user = new User();
+//                user.setNick(entity.getName());
+//                user.setPhone(entity.getId());
+//                user.setAvatar(entity.getImg());
+//                Intent intent = new Intent(context, ChatRoomActivity.class);
+//                intent.putExtra("user", user);
+//                //这一句一定不能去掉否则会报错，Calling startActivity() from outside of an Activity  context
+//                //requires the FLAG_ACTIVITY_NEW_TASK flag. Is this really what you want?
+//                //即当不是在一个activity中启动一个activity时必须加上上面那个语句
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//
+//                context.startActivity(intent);
+//
+//                entity.setCount(0);
+//                notifyDataSetChanged();
+//                application.setRecentNum(0);
+//
+//            }
+//        });
         return convertView;
     }
 

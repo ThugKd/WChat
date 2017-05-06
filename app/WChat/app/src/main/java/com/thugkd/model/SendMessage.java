@@ -25,7 +25,6 @@ public class SendMessage {
             m.setReceiver(dfAccount);
             m.setContent(content);
             m.setSendTime(MyTime.geTimeNoS());
-            Log.e("SendMess", m.toString());
             oos.writeObject(m);
         } catch (Exception e) {
             e.printStackTrace();
