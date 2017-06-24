@@ -61,14 +61,14 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister = (Button) findViewById(R.id.register);
     }
 
-    public void initView(){
+    public void initView() {
         SharedPreferences sp = getSharedPreferences("user", Context.MODE_PRIVATE);
         String spAccount = sp.getString("account", null);
         String spPass = sp.getString("pass", null);
-        if (spAccount != null){
+        if (spAccount != null) {
             etPhone.setText(spAccount);
         }
-        if (spPass != null){
+        if (spPass != null) {
             etPassword.setText(spPass);
         }
     }
@@ -86,13 +86,13 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
                 } else if (!phone.matches("^1[0-9]{10}$")) {
                     Toast.makeText(LoginActivity.this, "手机号格式不对", Toast.LENGTH_SHORT).show();
-                }else if(!password.matches("^[a-zA-Z0-9]{6,15}$")){
+                } else if (!password.matches("^[a-zA-Z0-9]{6,15}$")) {
                     Toast.makeText(LoginActivity.this, "密码需由6到15位数字和字母组成", Toast.LENGTH_SHORT).show();
                 } else {
                     new Thread(new Runnable() {
                         public void run() {
                             boolean b = login(etPhone.getText().toString(), etPassword.getText().toString());
-                            Log.e("Login",b + "====");
+                            Log.e("Login", b + "====");
                             Message msg = new Message();
                             if (b) {
                                 msg.what = 1;

@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.thugkd.entity.User;
+import com.thugkd.model.SendMessage;
 import com.thugkd.view.CircleImageView;
 import com.thugkd.wchat.AddFriend;
 import com.thugkd.wchat.ChatRoomActivity;
@@ -86,6 +87,7 @@ public class FriendFragment extends Fragment {
                                        }
                                    }
         );
+        SendMessage.getFriend();
     }
 
     //toolbar 导航

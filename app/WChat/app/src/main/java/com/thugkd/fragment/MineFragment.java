@@ -98,8 +98,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 bundle.putSerializable("user", me);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                Toast.makeText(getContext(), "ffff", Toast.LENGTH_SHORT).show();
-
                 break;
             case R.id.my_sign_relative:
                 Toast.makeText(getContext(), "我的签名", Toast.LENGTH_SHORT).show();
@@ -135,7 +133,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
                             }
                         })
-                        .setNegativeButton("返回", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

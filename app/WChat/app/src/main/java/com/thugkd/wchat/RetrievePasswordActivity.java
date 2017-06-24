@@ -71,8 +71,8 @@ public class RetrievePasswordActivity extends AppCompatActivity {
                 final String password = etPassword.getText().toString();
                 String password2 = etConfirmPassword.getText().toString();
 
-                if (verifyCode.length() == 0) {
-                    Toast.makeText(RetrievePasswordActivity.this, "验证码不能为空", Toast.LENGTH_SHORT).show();
+                if (!phone.matches("^1[0-9]{10}$")) {
+                    Toast.makeText(RetrievePasswordActivity.this, "手机号格式错误", Toast.LENGTH_SHORT).show();
                 } else if (password.length() == 0 || password2.length() == 0) {
                     Toast.makeText(RetrievePasswordActivity.this, " 密码不能为空", Toast.LENGTH_SHORT).show();
                 } else if (!password.matches("^[a-zA-Z0-9]{6,15}$")) {

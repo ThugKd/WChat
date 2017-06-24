@@ -8,7 +8,7 @@ CREATE TABLE `tb_user` (
   `uisonline` tinyint(4) DEFAULT '0',
   `uaddtime` datetime DEFAULT NULL,
   PRIMARY KEY (`uphone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tb_buddy` (
   `uphone` varchar(11) NOT NULL,
@@ -17,16 +17,7 @@ CREATE TABLE `tb_buddy` (
   KEY `tb_buddy_bphone_fk` (`uphone`),
   CONSTRAINT `tb_buddy_bphone_fk` FOREIGN KEY (`uphone`) REFERENCES `tb_user` (`uphone`),
   CONSTRAINT `tb_buddy_uphone_fk` FOREIGN KEY (`uphone`) REFERENCES `tb_user` (`uphone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
-
-CREATE TABLE `tb_group_member` (
-  `gaccount` smallint(6) DEFAULT NULL,
-  `uphone` varchar(11) DEFAULT NULL,
-  KEY `tb_group_member_acc_fk` (`gaccount`),
-  KEY `tb_group_member_phone_fk` (`uphone`),
-  CONSTRAINT `tb_group_member_acc_fk` FOREIGN KEY (`gaccount`) REFERENCES `tb_group` (`gaccount`),
-  CONSTRAINT `tb_group_member_phone_fk` FOREIGN KEY (`uphone`) REFERENCES `tb_user` (`uphone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `tb_group` (
   `gaccount` smallint(6) NOT NULL AUTO_INCREMENT,
@@ -36,4 +27,21 @@ CREATE TABLE `tb_group` (
   PRIMARY KEY (`gaccount`),
   KEY `tb_group_manager_fk` (`gmanager`),
   CONSTRAINT `tb_group_manager_fk` FOREIGN KEY (`gmanager`) REFERENCES `tb_user` (`uphone`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tb_group_member` (
+  `gaccount` smallint(6) DEFAULT NULL,
+  `uphone` varchar(11) DEFAULT NULL,
+  KEY `tb_group_member_acc_fk` (`gaccount`),
+  KEY `tb_group_member_phone_fk` (`uphone`),
+  CONSTRAINT `tb_group_member_acc_fk` FOREIGN KEY (`gaccount`) REFERENCES `tb_group` (`gaccount`),
+  CONSTRAINT `tb_group_member_phone_fk` FOREIGN KEY (`uphone`) REFERENCES `tb_user` (`uphone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO TABLE tb_user (uphone,upassword,unick) VALUES('18710896384','123456','管理员');
+
+INSERT INTO TABLE tb_group (gaccount,gnick,gmanager,gcount) VALUES('1','wchatGroup','18710896384',1);
+
+INSERT INTO TABLE tb_group_member (gaccount,uphone) VALUES('1','18710896384');

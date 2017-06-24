@@ -81,8 +81,9 @@ public class RecentChatAdapter extends BaseAdapter{
         holder.msg.setTextColor(Color.BLACK);
 
         if (entity.getCount() > 0) {
-            holder.count.setText(entity.getCount() + "");
-            holder.count.setTextColor(Color.BLACK);
+//            holder.count.setText(entity.getCount() + "");
+//            holder.count.setTextColor(Color.BLACK);
+            holder.count.setVisibility(View.INVISIBLE);
         } else {
             holder.count.setVisibility(View.INVISIBLE);// 如果没有消息，就隐藏此view
         }
